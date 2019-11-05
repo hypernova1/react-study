@@ -13,8 +13,8 @@ const LoginPage = ({ loginThunk, isAuthenticated }) => {
   const { from } = location.state || { from: { pathname: '/'} };
 
   const handleClick = async () => {
-    await loginThunk(id, password);
-    if(isAuthenticated) {
+    const result = await loginThunk(id, password);
+    if(result) {
       history.push(from);
     } else {
       alert("계정 정보가 일치하지 않습니다.");

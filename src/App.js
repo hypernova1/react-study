@@ -5,6 +5,7 @@ import PublicPage from './components/PublicPage';
 import ProtectedPage from './components/ProtectedPage';
 import PrivateRoute from './components/PrivateRoute';
 import LoginPage from './components/LoginPage';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           <li>
             <Link to="/protected">Protected Page</Link>
           </li>
+          <li>
+            <Link to="/profile">Profile Page</Link>
+          </li>
         </ul>
         
         <Switch>
@@ -26,6 +30,9 @@ function App() {
           </Route>
           <PrivateRoute path="/protected">
             <ProtectedPage />
+          </PrivateRoute>
+          <PrivateRoute path="/profile">
+            <Profile />
           </PrivateRoute>
           <Route path="/login">
             <LoginPage />

@@ -18,6 +18,7 @@ export const loginThunk = (id, password) => dispatch => {
     response => {
       if(response.data) {
         dispatch(loginSuccess(response.data));
+        return true;
       } else {
         dispatch(loginFailure());
         return false;
