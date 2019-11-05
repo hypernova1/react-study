@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ children, isAuthenticated, ...rest }) => {
+
   return (
     <Route
       {...rest}

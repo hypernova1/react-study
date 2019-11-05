@@ -7,14 +7,16 @@ const AuthButton = ({ isAuthenticated, logout }) => {
 
   let history = useHistory();
 
+  const handleClick = () => {
+    logout();
+    history.push('/');
+  }
+
   return isAuthenticated ? (
     <p>
       Welcome!{" "}
       <button
-        onClick={() => {
-          logout();
-          history.push('/');
-        }}
+        onClick={handleClick}
       >logout</button>
     </p>
   ) : (
