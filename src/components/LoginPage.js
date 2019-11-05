@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { loginThunk } from '../reducers/auth';
 
-const LoginPage = ({ loginThunk }) => {
+const LoginPage = ({ loginThunk, isAuthenticated }) => {
   
   const history = useHistory();
   const location = useLocation();
@@ -13,8 +13,8 @@ const LoginPage = ({ loginThunk }) => {
   const { from } = location.state || { from: { pathname: '/'} };
 
   const handleClick = async () => {
-    const result = await loginThunk(id, password);
-    if(result) {
+    await loginThunk(id, password);
+    if(isAuthenticated) {
       history.push(from);
     } else {
       alert("계정 정보가 일치하지 않습니다.");
@@ -36,9 +36,13 @@ const LoginPage = ({ loginThunk }) => {
   )
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
 const mapDispatchToProps = dispatch => ({
   loginThunk: (id, password) => dispatch(loginThunk(id, password))
 })
 
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
